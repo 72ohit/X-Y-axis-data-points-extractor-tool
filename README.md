@@ -1,1 +1,1 @@
-# image-pixel-cordintel-point-extractor
+# image-pixel-cordinate-point-extractor
