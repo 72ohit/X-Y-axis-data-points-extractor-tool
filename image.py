@@ -2,10 +2,12 @@
 import cv2
 import os
 import csv
+import numpy as np
 #import pandas 
+emptylist= []
+
 
 def click_event(event, x, y, flags, params):
-    emptylist= []
 
     if event == cv2.EVENT_LBUTTONDOWN:
         print(x, ' ', y)
@@ -13,8 +15,12 @@ def click_event(event, x, y, flags, params):
         emptylist.append(y)
         df = emptylist
         #df.to_csv("/home/rohit/Desktop/opencvimagenotationtool/datapoint.csv", sep=',',index=False)
+        #import numpy as np
+        #np.savetxt("file_name.csv", emptylist, delimiter=",", fmt='%s')
+        data = emptylist
+        out = csv.writer(open("datapoint.csv","w"), delimiter=',',quoting=csv.QUOTE_ALL)
+        out.writerow(data)
 
-        
 
         font = cv2.FONT_HERSHEY_SIMPLEX
         cv2.putText(img, str(x) + ',' + str(y), (x,y), font, 0.5, (255, 0, 0), 1)
@@ -41,5 +47,5 @@ if __name__=="__main__":
         cv2.imshow('image', img)
         cv2.setMouseCallback('image', click_event)
 
-        cv2.waitKey(3000)
+        cv2.waitKey(5000)
 	
